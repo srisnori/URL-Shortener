@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>URL Shortener</title>
-</head>
 <body>
-    <h1>URL Shortener</h1>
     <input id="longUrl" type="url" placeholder="Enter your long URL" required>
     <button onclick="shortenUrl()">Shorten URL</button>
     <p id="shortUrl"></p>
@@ -30,7 +22,6 @@
                 if (response.ok) {
                     const data = await response.json();
                     console.log(data);  
-                    // Corrected the line to display the short_url from the response
                     document.getElementById("shortUrl").textContent = `Short URL: ${data.short_url}`;  
                 } else {
                     console.error('API Error:', response.statusText);  
@@ -43,4 +34,3 @@
         }
     </script>
 </body>
-</html>
