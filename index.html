@@ -6,6 +6,7 @@
     <title>URL Shortener</title>
 </head>
 <body>
+    <h1>URL Shortener</h1>
     <input id="longUrl" type="url" placeholder="Enter your long URL" required>
     <button onclick="shortenUrl()">Shorten URL</button>
     <p id="shortUrl"></p>
@@ -13,13 +14,13 @@
     <script>
         async function shortenUrl() {
             const longUrl = document.getElementById("longUrl").value;
-            const apiUrl = "https://s8vd7ovlu1.execute-api.us-west-1.amazonaws.com/prod/shorten";  // Replace with your actual API URL
+            const apiUrl = "https://s8vd7ovlu1.execute-api.us-west-1.amazonaws.com/prod/shorten"; 
 
             try {
                 const response = await fetch(apiUrl, {
-                    method: "POST",  // Use POST since your Lambda expects POST requests
+                    method: "POST",  
                     headers: {
-                        'Content-Type': 'application/json'  // Ensure the request header is set correctly
+                        'Content-Type': 'application/json' 
                     },
                     body: JSON.stringify({
                         long_url: longUrl
@@ -28,8 +29,11 @@
 
                 if (response.ok) {
                     const data = await response.json();
-                    document.getElementById("shortUrl").textContent = `Short URL: ${data.body}`; 
+                    console.log(data);  
+                    // Corrected the line to display the short_url from the response
+                    document.getElementById("shortUrl").textContent = `Short URL: ${data.short_url}`;  
                 } else {
+                    console.error('API Error:', response.statusText);  
                     document.getElementById("shortUrl").textContent = "Error shortening URL.";
                 }
             } catch (error) {
