@@ -22,7 +22,7 @@
                 if (response.ok) {
                     const data = await response.json();
                     console.log(data);  
-                    document.getElementById("shortUrl").textContent = `Short URL: ${data.short_url}`;  
+                    document.getElementById("shortUrl").textContent = `Short URL: ${data.short_url}`; 
                 } else {
                     console.error('API Error:', response.statusText);  
                     document.getElementById("shortUrl").textContent = "Error shortening URL.";
