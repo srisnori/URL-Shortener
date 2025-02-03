@@ -22,7 +22,11 @@
                 body: JSON.stringify({ long_url: longUrl })
             });
             const data = await response.json();
-            document.getElementById('result').innerHTML = `<a href="https://4oinru2syl.execute-api.us-west-1.amazonaws.com/redirect/${data.short_url}" target="_blank">/${data.short_url}</a>`;
+
+            const shortCode = data.short_url.split('https://short.ly/')[1];
+            const shortUrl = `${data.short_url}`;
+            const redirectUrl = `https://4oinru2syl.execute-api.us-west-1.amazonaws.com/redirect/${shortCode}`;
+            document.getElementById('result').innerHTML = `<a href="${redirectUrl}" target="_blank">${shortUrl}</a>`;
         });
     </script>
 </body>
